@@ -1,2 +1,2 @@
-# tdd-dojo
-Example project for Test Driven Design dojo
+# TDD Dojo
+Projeto para o dojo de Test Driven Design

@@ -1,10 +1,12 @@
 package cassianoalves.tdddojo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.math.BigDecimal;
 import java.util.Currency;
 
 @Getter
+@AllArgsConstructor
 public class Amount {
 	private BigDecimal value;
 	private Currency currency;
@@ -16,5 +18,9 @@ public class Amount {
 
 	public static Amount getInstance(long value, String currencyCode) {
 		return new Amount(value, currencyCode);
+	}
+
+	public static Amount getInstance(BigDecimal value, Currency currency) {
+		return new Amount(value, currency);
 	}
 }

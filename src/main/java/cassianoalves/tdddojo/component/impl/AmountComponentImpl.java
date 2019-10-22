@@ -11,7 +11,7 @@ public class AmountComponentImpl implements AmountComponent {
 	private ExchangeRepository exchangeRepository;
 	
 	public Amount sum(Amount a, Amount b, Currency currencyToReturn) {
-		// TODO
-		return null;
+
+		return Amount.getInstance(a.getValue().add(b.getValue()), currencyToReturn);
 	}
 }

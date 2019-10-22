@@ -26,3 +26,6 @@ hs_err_pid*
 # IntelliJ Files
 *.iml
 .idea/
+
+# Temp files
+.~*#

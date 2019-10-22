@@ -9,8 +9,12 @@ public class Amount {
 	private BigDecimal value;
 	private Currency currency;
 
-	public Amount(long value, String currency) {
+	private Amount(long value, String currencyCode) {
 		this.value = BigDecimal.valueOf(value);
-		this.currency = Currency.getInstance(currency);
+		this.currency = Currency.getInstance(currencyCode);
+	}
+
+	public static Amount getInstance(long value, String currencyCode) {
+		return new Amount(value, currencyCode);
 	}
 }

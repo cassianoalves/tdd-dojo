@@ -9,7 +9,7 @@ public class AmountComponentImplTest {
 
 	@Test
 	public void shouldSumAmountsInSameCurrency() {
-		Amount a = new Amount(25000, "USD");
+		Amount a = Amount.getInstance(25000, "USD");
 	}
 	
 	@Test

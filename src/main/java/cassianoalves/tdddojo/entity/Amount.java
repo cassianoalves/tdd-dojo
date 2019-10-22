@@ -12,8 +12,8 @@ public class Amount {
 	private Currency currency;
 
 	private Amount(long value, String currencyCode) {
-		this.value = BigDecimal.valueOf(value);
 		this.currency = Currency.getInstance(currencyCode);
+		this.value = BigDecimal.valueOf(value).setScale(this.currency.getDefaultFractionDigits());
 	}
 
 	public static Amount getInstance(long value, String currencyCode) {
@@ -21,6 +21,6 @@ public class Amount {
 	}
 
 	public static Amount getInstance(BigDecimal value, Currency currency) {
-		return new Amount(value, currency);
+		return new Amount(value.setScale(currency.getDefaultFractionDigits()), currency);
 	}
 }

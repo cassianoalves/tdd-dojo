@@ -30,14 +30,14 @@ public class AmountComponentImplTest {
 		Amount result = amountComponent.sum(a, b, Currency.getInstance("USD"));
 
 		verifyZeroInteractions(exchangeRepository);
-		assertEquals(result.getValue(), BigDecimal.valueOf(65000));
-		assertEquals(result.getCurrency(), Currency.getInstance("USD"));
+		assertEquals(BigDecimal.valueOf(65000).setScale(2), result.getValue());
+		assertEquals(Currency.getInstance("USD"), result.getCurrency());
 	}
 	
 	@Test
 	public void shouldSumAmountsInDifferentCurrency() {
 		Amount a = Amount.getInstance(25000, "USD");
-		Amount b = Amount.getInstance(60000, "EUR");
+		Amount b = Amount.getInstance(56000, "EUR");
 
 		when(exchangeRepository.getAmountInDollars(Currency.getInstance("EUR")))
 				.thenReturn(BigDecimal.valueOf(1.4));
@@ -45,8 +45,8 @@ public class AmountComponentImplTest {
 		Amount result = amountComponent.sum(a, b, Currency.getInstance("USD"));
 
 		verify(exchangeRepository, times(1)).getAmountInDollars(Currency.getInstance("EUR"));
-		assertEquals(result.getValue(), BigDecimal.valueOf(65000));
-		assertEquals(result.getCurrency(), Currency.getInstance("USD"));
+		assertEquals(BigDecimal.valueOf(103400).setScale(2), result.getValue());
+		assertEquals(Currency.getInstance("USD"), result.getCurrency());
 	}
 	
 

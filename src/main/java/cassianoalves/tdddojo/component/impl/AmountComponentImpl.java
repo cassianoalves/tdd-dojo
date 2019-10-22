@@ -12,6 +12,16 @@ public class AmountComponentImpl implements AmountComponent {
 	
 	public Amount sum(Amount a, Amount b, Currency currencyToReturn) {
 
-		return Amount.getInstance(a.getValue().add(b.getValue()), currencyToReturn);
+		Amount resultCurrencyA = getAmountInCurrency(a, currencyToReturn);
+		Amount resultCurrencyB = getAmountInCurrency(b, currencyToReturn);
+
+		return Amount.getInstance(resultCurrencyA.getValue().add(resultCurrencyB.getValue()), currencyToReturn);
+	}
+
+	private Amount getAmountInCurrency(Amount a, Currency currencyToReturn) {
+		if(a.getCurrency().equals(currencyToReturn)) {
+			return a;
+		}
+		return null;
 	}
 }
